@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="input" type="text">
+    <button id="but">Submit</button>
+    <div id="fill"></div>
+
+    <script>
+        $("#but").on('click', function (e) {
+            let userInput = $('#input').val();
+
+            axios({
+                url: 'http://www.omdbapi.com/?apikey=trilogy&t='+userInput,
+                method: "GET"
+            })
+                .then(function (response) {
+                    const act = response.data.Actors.split(",")[0];
+                    $("#fill").text(act);
+
+                })
+                .catch(function (err) {
+                    console.error(err)
+                })
+
+
+        })
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
